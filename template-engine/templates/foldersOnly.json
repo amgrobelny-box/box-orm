@@ -1,0 +1,28 @@
+{
+  "parentFolderId": "0",
+  "template": {
+    "name": "Application Base Folder",
+    "children": [
+      {
+        "name": "Customers"
+      },
+      {
+        "name": "Loan Officers"
+      },
+      {
+        "name": "Title Agents"
+      },
+      {
+        "name": "Admins",
+        "children": [
+          {
+            "name": "Supervisors"
+          },
+          {
+            "name": "IT"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,178 @@
+{
+    "users": [
+        {
+            "parentFolderId": "0",
+            "templateKeys": {
+                "customer_name": "andy",
+                "customer_id": "123"
+            },
+            "id": "1021162747",
+            "persona": "customer",
+            "excludeFrom": [
+                "1021160954"
+            ],
+            "addToGroups": [
+                {
+                    "id": "4546449",
+                    "role": "admin"
+                },
+                {
+                    "id": "4551073"
+                }
+            ]
+        },
+        {
+            "parentFolderId": "0",
+            "templateKeys": {
+                "customer_name": "angela",
+                "customer_id": "321"
+            },
+            "id": "1021160954",
+            "persona": "customer",
+            "excludeFrom": [
+                "1021162747"
+            ]
+        },
+        {
+            "id": "1021164631",
+            "persona": "admin",
+            "skipTemplate": true
+        },
+        {
+            "skipTemplate": true,
+            "id": "1021163764",
+            "persona": "relative",
+            "excludeFrom": [
+                "1021160954"
+            ]
+        },
+        {
+            "skipTemplate": true,
+            "id": "1021162747",
+            "persona": "spouse",
+            "excludeFrom": [
+                "1021162747"
+            ]
+        },
+        {
+            "skipTemplate": true,
+            "id": "1021160954",
+            "persona": "spouse",
+            "excludeFrom": [
+                "1021160954"
+            ]
+        }
+    ],
+    "template": {
+        "name": "<%= customer_name %> - <%= customer_id %>",
+        "access": [
+            {
+                "id": "admin",
+                "role": "editor",
+                "type": "user"
+            },
+            {
+                "id": "275111793",
+                "role": "editor",
+                "type": "user"
+            }
+        ],
+        "metadata": [
+            {
+                "scope": "enterprise",
+                "template": "customer",
+                "values": {
+                    "lineOfBusiness": "Accountants"
+                }
+            },
+            {
+                "scope": "global",
+                "template": "properties",
+                "values": {
+                    "contacted": "false"
+                }
+            }
+        ],
+        "children": [
+            {
+                "name": "Public Facing Documents for <%= customer_name %>",
+                "access": [
+                    {
+                        "id": "customer",
+                        "role": "editor",
+                        "type": "user"
+                    }
+                ],
+                "webhooks": [
+                    {
+                        "address": "https://www.google.com",
+                        "triggers": ["FILE.UPLOADED", "FILE.DELETED"]
+                    }
+                ],
+                "children": [
+                    {
+                        "name": "Price Quotes",
+                        "children": [
+                            {
+                                "name": "Accounting",
+                                "children": [
+                                    {
+                                        "name": "FinServ",
+                                        "children": []
+                                    }
+                                ],
+                                "metadata": [
+                                    {
+                                        "values": {
+                                            "status": "open",
+                                            "ignore": "true"
+                                        }
+                                    }
+                                ],
+                                "access": [
+                                    {
+                                        "id": "331291459",
+                                        "role": "previewer",
+                                        "type": "user"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Outside Vendors",
+                        "children": [
+                            {
+                                "name": "Software",
+                                "children": [
+                                    {
+                                        "name": "SaaS",
+                                        "children": [],
+                                        "access": [
+                                            {
+                                                "id": "relative",
+                                                "role": "previewer",
+                                                "type": "user"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Requirements",
+                        "children": [],
+                        "access": [
+                            {
+                                "id": "spouse",
+                                "role": "editor",
+                                "type": "user"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
